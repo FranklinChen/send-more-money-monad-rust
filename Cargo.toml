@@ -1,0 +1,4 @@
+[package]
+name = "send-more-money"
+version = "0.1.0"
+authors = ["Franklin Chen <franklinchen@franklinchen.com>"]
