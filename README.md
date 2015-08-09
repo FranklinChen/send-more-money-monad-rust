@@ -22,22 +22,33 @@ would vary depending on the input.
 
 ### Explicit monadic approach
 
-We implement a monad instance for `Vec`.
+We implement a monad instance for `Iterator`.
 
 Advantages over imperative approach:
 
 - no need for `for` or `if` control structures
+- we can return an `Iterator` to **incrementally ask for one solution at
+  a time**, rather than return a whole `Vec` at once
 
 Disadvantages:
 
 - the code is unpleasant to type and look at
-- compilation of all the nested closures is slow
+- there is risk of stack overflow, because Rust is not designed
+  for this style of programming
+- compilation of all the nested closures is very slow because of Rust's
+monomorphism
 
 ### Macro-based monadic syntax
 
 This is identical to the explicit monadic approach, except that we use
 Rust's macro system to provide a monadic syntax looking like what
 Haskell, Scala, and F# have built-in.
+
+We take ideas from the macro library [`mdo`](https://github.com/TeXitoi/rust-mdo). It's
+worth looking at the
+[source code](https://github.com/TeXitoi/rust-mdo/blob/master/src/lib.rs)
+to see what the `mdo!` macro does. (The reason we are not using the
+library as it is, is that it creates overhead that results in stack overflow.)
 
 Advantages:
 
@@ -50,12 +61,11 @@ Disadvantages:
 ## Performance
 
 The imperative solution is obviously a bit faster than the monadic
-one.
+one, about 50% faster.
 
 ```
 $ cargo bench
-test imperative::test::bench_solutions     ... bench:  51,329,560 ns/iter (+/- 5,085,420)
-test monadic::test::bench_solutions        ... bench:  81,393,211 ns/iter (+/- 20,765,764)
-test monadic_syntax::test::bench_solutions ... bench:  85,343,092
-ns/iter (+/- 7,851,590)
+test imperative::test::bench_solutions     ... bench:  50,721,608 ns/iter (+/- 3,896,741)
+test monadic::test::bench_solutions        ... bench:  76,722,974 ns/iter (+/- 5,550,308)
+test monadic_syntax::test::bench_solutions ... bench:  79,217,137 ns/iter (+/- 11,883,506)
 ```

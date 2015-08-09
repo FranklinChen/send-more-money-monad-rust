@@ -2,13 +2,14 @@
 
 /// mdo! block introduces:
 ///
-/// - `let` ... `:=` ...
+/// - ... `=<<` ...
 /// - `when` ...
 ///
 /// It uses:
 ///
-/// - `mzero`
 /// - `flat_map`
+/// - `ret`
+/// - `mzero`
 ///
 /// Modified from [`rust-mdo`](https://github.com/TeXitoi/rust-mdo).
 macro_rules! mdo {

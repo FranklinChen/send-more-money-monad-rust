@@ -2,15 +2,18 @@
 
 use types::Solution;
 use utils::{to_number, is_in};
-use vec_monad::{mreturn, guard};
+
+// Use the `Iterator` monad.
+use iter_monad::{ret, when};
 
 /// Compute all solutions to `SEND+MORE=MONEY`, monadically.
 ///
-/// Use `Vec` as monad with iterators instead of `for` loops,
-/// and `guard` as a function rather than `if`.
+/// Use `Iterator` as monad instead of using `for` loops,
+/// and replace `if` with the function `when`.
 ///
-/// The true final result is an iterator of solutions, but we `collect``
-/// for convenience into a `Vec` as the very last step.
+/// Note that we really compute an `Iterator`, and could return that,
+/// but for simplicity, we collect into a `Vec` for consistency with
+/// the imperative API.
 ///
 /// `flat_map` corresponds to Haskell's [`>>=`](https://hackage.haskell.org/package/base-4.8.1.0/docs/Control-Monad.html#v:-62--62--61-) operator as `flat_map`.
 ///
@@ -47,9 +50,9 @@ pub fn solutions(digits: &[usize]) -> Vec<Solution> {
 
     let money = to_number(&[m,o,n,e,y]);
 
-    guard(send + more == money, ||
+    when(send + more == money, ||
 
-    mreturn((send, more, money))
+    ret((send, more, money))
 
     )})})))}))));
 

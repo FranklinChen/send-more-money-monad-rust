@@ -3,9 +3,15 @@
 
 use types::Solution;
 use utils::{to_number, is_in};
-use vec_monad::{mreturn, mzero};
+
+// Use the `Iterator` monad.
+use iter_monad::{ret, mzero};
 
 /// Compute all solutions to `SEND+MORE=MONEY`, monadically, using macros.
+///
+/// Note that we really compute an `Iterator`, and could return that,
+/// but for simplicity, we collect into a `Vec` for consistency with
+/// the imperative API.
 ///
 /// # Examples:
 ///
@@ -42,8 +48,7 @@ pub fn solutions(digits: &[usize]) -> Vec<Solution> {
         let money = to_number(&[m,o,n,e,y]);
 
         when send + more == money;
-
-        ret mreturn((send, more, money))
+        ret ret((send, more, money))
     }.collect();
 
     result
