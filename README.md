@@ -61,11 +61,11 @@ Disadvantages:
 ## Performance
 
 The imperative solution is obviously a bit faster than the monadic
-one, about 50% faster.
+one, about 37% faster.
 
 ```
 $ cargo bench
-test imperative::test::bench_solutions     ... bench:  50,721,608 ns/iter (+/- 3,896,741)
-test monadic::test::bench_solutions        ... bench:  76,722,974 ns/iter (+/- 5,550,308)
-test monadic_syntax::test::bench_solutions ... bench:  79,217,137 ns/iter (+/- 11,883,506)
+test bench_imperative_solutions     ... bench:  54,804,559 ns/iter (+/- 2,309,645)
+test bench_monadic_solutions        ... bench:  74,392,854 ns/iter (+/- 3,183,683)
+test bench_monadic_syntax_solutions ... bench:  75,067,433 ns/iter (+/- 4,109,869)
 ```

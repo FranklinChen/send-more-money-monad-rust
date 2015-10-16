@@ -58,14 +58,3 @@ pub fn solutions(digits: &[usize]) -> Vec<Solution> {
 
     iter.collect()
 }
-
-#[cfg(test)]
-mod test {
-    use super::solutions;
-    use test::Bencher;
-
-    #[bench]
-    fn bench_solutions(b: &mut Bencher) {
-        b.iter(|| solutions(&[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
-    }
-}

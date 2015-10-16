@@ -2,11 +2,6 @@
 //!
 //! Inspired by mjd's [blog post](http://blog.plover.com/prog/monad-search-2.html)
 
-// Requires nightly.
-#![feature(test)]
-
-extern crate test;
-
 // For monadic syntax.
 #[macro_use]
 pub mod monad_macro;

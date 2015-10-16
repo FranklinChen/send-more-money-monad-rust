@@ -1,4 +1,10 @@
 [package]
+
 name = "send-more-money"
 version = "0.1.0"
 authors = ["Franklin Chen <franklinchen@franklinchen.com>"]
+description = "Solve SEND + MORE = MONEY"
+homepage = "https://github.com/FranklinChen/send-more-money-rust"
+repository = "https://github.com/FranklinChen/send-more-money-rust"
+readme = "README.md"
+license = "MIT"
